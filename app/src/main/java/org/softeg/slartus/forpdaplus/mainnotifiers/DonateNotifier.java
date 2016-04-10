@@ -30,9 +30,9 @@ public class DonateNotifier extends MainNotifier {
     public void showNotify(final FragmentActivity fragmentActivity) {
         try {
             addToStack(new MaterialDialog.Builder(fragmentActivity)
-                    .title(R.string.DonationDialog_Tittle)
-                    .content(R.string.DonationDialog_Content)
-                    .positiveText(R.string.DonationDialog_Donate)
+                    .title(R.String.DonationDialog_tittle)
+                    .content(R.String.DonationDialog_msg)
+                    .positiveText(R.String.DonationDialog_Donate)
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
@@ -41,7 +41,7 @@ public class DonateNotifier extends MainNotifier {
                             fragmentActivity.startActivity(settingsActivity);
                         }
                     })
-                    .negativeText(R.string.DonationDialog_Later).build());
+                    .negativeText(R.String.DonationDialog_Later).build());
         } catch (Throwable ex) {
             AppLog.e(fragmentActivity, ex);
         }
