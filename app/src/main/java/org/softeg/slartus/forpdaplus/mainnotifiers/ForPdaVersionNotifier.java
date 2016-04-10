@@ -167,12 +167,11 @@ public class ForPdaVersionNotifier extends MainNotifier {
                 public void run() {
                     try {
                         addToStack(new MaterialDialog.Builder(context)
-                                .title("Новая версия!")
-                                .content("Обнаружена новая версия: " + version + "\n\n" +
-                                        "Изменения:\n" + info)
-                                .positiveText("Скачать")
-                                .negativeText("Позже")
-                                .neutralText("Забыть")
+                                .title("")
+                                .content(R.String.Update_msg1 + version + R.String.Update_msg2 + info)
+                                .positiveText(R.String.Update_download_btn)
+                                .negativeText(R.String.Update_later_btn)
+                                .neutralText(R.String.Update_ignore_btn)
                                 .callback(new MaterialDialog.ButtonCallback() {
                                     @Override
                                     public void onPositive(MaterialDialog dialog) {
@@ -193,7 +192,7 @@ public class ForPdaVersionNotifier extends MainNotifier {
                                 .build());
 
                     } catch (Exception ex) {
-                        AppLog.e(context, new NotReportException("Ошибка проверки новой версии", ex));
+                        AppLog.e(context, new NotReportException(R.String.Update_chk_fail, ex));
                     }
 
                 }
@@ -250,9 +249,9 @@ public class ForPdaVersionNotifier extends MainNotifier {
             @Override
             public void run() {
                 addToStack(new MaterialDialog.Builder(context)
-                        .title(warning ? "Предупреждение" : "Уведомление")
+                        .title(warning ? R.String.Warning : R.String.Inform)
                         .content(Html.fromHtml(msg_text))
-                        .positiveText("Я понял")
+                        .positiveText(R.String.Gotit)
                         .callback(new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onPositive(MaterialDialog dialog) {
@@ -267,7 +266,7 @@ public class ForPdaVersionNotifier extends MainNotifier {
     }
 
     private void showToast(Context context){
-        Toast.makeText(context, "Нет новой версии", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.String.Update_utd, Toast.LENGTH_SHORT).show();
     }
 
     private void msg(String text) {
