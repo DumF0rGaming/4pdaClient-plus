@@ -30,11 +30,9 @@ public class DonateNotifier extends MainNotifier {
     public void showNotify(final FragmentActivity fragmentActivity) {
         try {
             addToStack(new MaterialDialog.Builder(fragmentActivity)
-                    .title("Неофициальный 4pda клиент")
-                    .content("Ваша поддержка - единственный стимул к дальнейшей разработке и развитию программы\n" +
-                            "\n" +
-                            "Вы можете сделать это позже через меню>>настройки>>Помочь проекту")
-                    .positiveText("Помочь проекту")
+                    .title(R.string.DonationDialog_Tittle)
+                    .content(R.string.DonationDialog_Content)
+                    .positiveText(R.string.DonationDialog_Donate)
                     .callback(new MaterialDialog.ButtonCallback() {
                         @Override
                         public void onPositive(MaterialDialog dialog) {
@@ -43,7 +41,7 @@ public class DonateNotifier extends MainNotifier {
                             fragmentActivity.startActivity(settingsActivity);
                         }
                     })
-                    .negativeText("Позже").build());
+                    .negativeText(R.string.DonationDialog_Later).build());
         } catch (Throwable ex) {
             AppLog.e(fragmentActivity, ex);
         }
