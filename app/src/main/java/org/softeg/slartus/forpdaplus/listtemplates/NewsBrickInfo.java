@@ -11,7 +11,7 @@ import org.softeg.slartus.forpdaplus.listfragments.news.NewsListFragment;
 public class NewsBrickInfo extends BrickInfo {
     @Override
     public String getTitle() {
-        return "Новости";
+        return R.String.NavDrawer_News;
     }
 
     @Override
