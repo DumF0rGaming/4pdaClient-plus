@@ -61,16 +61,16 @@ public final class AppLog {
             ShowInBrowserDialog.showDialog(context, (ShowInBrowserException) ex);
         } else if (ex instanceof NotReportException) {
             new MaterialDialog.Builder(context)
-                    .title("Ошибка")
+                    .title(R.String.InBrowserException_tittle)
                     .content(message)
-                    .positiveText("ОК")
+                    .positiveText(R.String.netException_positive)
                     .show();
         } else if (ex.getClass() == MessageInfoException.class) {
             MessageInfoException messageInfoException = (MessageInfoException) ex;
             new MaterialDialog.Builder(context)
                     .title(messageInfoException.Title)
                     .content(messageInfoException.Text)
-                    .positiveText("ОК")
+                    .positiveText(R.String.netException_positive)
                     .show();
         } else {
             org.acra.ACRA.getErrorReporter().handleException(ex);
@@ -85,13 +85,13 @@ public final class AppLog {
             if (message == null)
                 return false;
             MaterialDialog.Builder builder = new MaterialDialog.Builder(context)
-                    .title("Проверьте соединение")
+                    .title(R.String.netException_tittle)
                     .content(message)
-                    .positiveText("ОК");
+                    .positiveText(R.String.netException_positive);
 
 
             if (netExceptionAction != null) {
-                builder.negativeText("Повторить")
+                builder.negativeText(R.String.netException_refresh)
                 .callback(new MaterialDialog.ButtonCallback() {
                     @Override
                     public void onNegative(MaterialDialog dialog) {
@@ -110,13 +110,13 @@ public final class AppLog {
 
     public static String getLocalizedMessage(Throwable ex, String defaultValue) {
         if (isHostUnavailableException(ex))
-            return "Сервер недоступен или не отвечает";
+            return R.String.netException_unavailable;
         if (isTimeOutException(ex))
-            return "Превышен таймаут ожидания";
+            return R.String.netException_timeout;
         if (isException(ex, MalformedChunkCodingException.class))
-            return "Целевой сервер не в состоянии ответить";
+            return R.String.netException_malformedchunk;
         if (isException(ex, SocketException.class))
-            return "Соединение разорвано";
+            return R.String.netException_socket;
         return defaultValue;
     }
 
