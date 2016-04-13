@@ -99,21 +99,21 @@ public class ShortUserInfo {
                 url = readFromClipboard(getContext());
                 if(url==null) url = "";
                 new MaterialDialog.Builder(getContext())
-                        .title("Перейти по ссылке")
-                        .input("Вставьте ссылку", isPdaLink(url) ? url : null, new MaterialDialog.InputCallback() {
+                        .title(R.String.Goto_tittle)
+                        .input(R.String.Goto_input, isPdaLink(url) ? url : null, new MaterialDialog.InputCallback() {
                             @Override
                             public void onInput(MaterialDialog dialog, CharSequence input) {
 
                             }
                         })
                         .inputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE)
-                        .positiveText("Открыть")
-                        .negativeText("Отмена")
+                        .positiveText(R.String.Goto_positive)
+                        .negativeText(R.String.Goto_cancel)
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(MaterialDialog dialog, DialogAction which) {
                                 if(!IntentActivity.tryShowUrl((MainActivity)getContext(), ((MainActivity)getContext()).getHandler(), dialog.getInputEditText().getText()+"", false, false)){
-                                    Toast.makeText(getContext(), "Не умею обрабатывать такие ссылки", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), R.String.Goto_canthandle, Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })
@@ -179,7 +179,7 @@ public class ShortUserInfo {
                 });
             }
         }else {
-            loginButton.setText("Проверьте соединение");
+            loginButton.setText(R.String.NavUserInfo_Connection);
         }
         infoRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,9 +202,9 @@ public class ShortUserInfo {
     private void refreshQms() {
         int qmsCount = client.getQmsCount();
         if (qmsCount != 0) {
-            qmsMessages.setText("Новые сообщения QMS: " + qmsCount);
+            qmsMessages.setText(R.String.NavUserInfo_Messages + qmsCount);
         } else {
-            qmsMessages.setText("Нет новых сообщений QMS");
+            qmsMessages.setText(R.String.NavUserInfo_NoMessages);
         }
     }
 
@@ -230,8 +230,8 @@ public class ShortUserInfo {
         @Override
         protected void onPostExecute(Void result) {
             if(avatarUrl.equals("")|reputation.equals("")){
-                Toast.makeText(getContext(),"Не удалось загрузить данные",Toast.LENGTH_SHORT).show();
-                loginButton.setText("Произошла ошибка");
+                Toast.makeText(getContext(),R.String.NavUserInfo_Failedtoload,Toast.LENGTH_SHORT).show();
+                loginButton.setText(R.String.NavUserInfo_Error);
                 qmsMessages.setVisibility(View.GONE);
             }else if (client.getLogined()) {
                 qmsMessages.setVisibility(View.VISIBLE);
@@ -246,7 +246,7 @@ public class ShortUserInfo {
                 });
                 userNick.setText(client.getUser());
                 userRep.setVisibility(View.VISIBLE);
-                userRep.setText("Репутация: " + reputation);
+                userRep.setText(R.String.NavUserInfo_Rep + reputation);
 
                 refreshQms();
                 //Log.e("kek", avatarUrl+" : "+prefs.getString("userAvatarUrl",""));
