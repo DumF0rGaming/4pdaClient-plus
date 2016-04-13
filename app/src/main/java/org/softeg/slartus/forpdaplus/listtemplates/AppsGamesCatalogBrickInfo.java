@@ -10,7 +10,7 @@ import org.softeg.slartus.forpdaplus.listfragments.AppsGamesCatalogFragment;
 public class AppsGamesCatalogBrickInfo extends BrickInfo {
     @Override
     public String getTitle() {
-        return "Каталог игр и приложений";
+        return R.String.NavDrawer_AppsGamesCatalog;
     }
 
     @Override
