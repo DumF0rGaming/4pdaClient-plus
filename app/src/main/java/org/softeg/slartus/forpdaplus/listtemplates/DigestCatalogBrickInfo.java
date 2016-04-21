@@ -10,7 +10,7 @@ import org.softeg.slartus.forpdaplus.listfragments.DigestCatalogFragment;
 public class DigestCatalogBrickInfo extends BrickInfo {
     @Override
     public String getTitle() {
-        return "Дайджест игр и приложений";
+        return R.String.DigestCatalog;
     }
 
     @Override
